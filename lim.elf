@@ -39,4 +39,4 @@ limit_elim	: limit Pr -> cone Pr' -> un (fact Pr Pr').
 colimit		: cat_mor (morph_ob M I) V -> type.
 colimit_incl	: colimit In -> cocone In.
 
-colimit_elim	: colimit In -> cone In' -> un (cofact In In').
+colimit_elim	: colimit In -> cocone In' -> un (cofact In In').
