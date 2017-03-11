@@ -37,8 +37,8 @@ assoc		: H @ (G @ F) == (H @ G) @ F.
 
 id		: cat_mor X X.
 
-id_r		: F @ id == F.
 id_l		: id @ F == F.
+id_r		: F @ id == F.
 
 =@=		: F == F' -> G == G' -> F @ G == F' @ G'.
 

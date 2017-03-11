@@ -8,28 +8,35 @@ cocone_elim	: cocone In -> In == In @ morph_hom F.
 
 %% Factorization
 
-fact		: cat_mor V X -> cat_mor V' X -> cat_mor V V' -> type.
-fact_elim	: fact Pr Pr' F -> Pr @ F == Pr'.
+%abbrev dom = [_ : mor X _] X.
+%abbrev cod = [_ : mor _ X] X.
 
-cofact		: cat_mor X V -> cat_mor X V' -> cat_mor V' V -> type.
-cofact_elim	: cofact In In' F -> In == F @ In'.
+fact		: cat_mor V X -> cat_mor V' X -> ens.
+fact_incl	: in (fact Pr Pr') -> mor (dom Pr) (dom Pr').
 
-% %% Unique factorization
+fact_elim	: Pr @ fact_incl F == Pr'.
 
-% un_fact_elim	:     un_fact Pr Pr' F
-% 		   -> un_fact Pr Pr' G
-% 		   -> F == G.
+cofact		: cat_mor X V -> cat_mor X V' -> ens.
+cofact_incl	: in (cofact In In') -> mor (cod In) (cod In').
 
-% un_cofact_elim	:    un_cofact In In' F
-% 		  -> un_cofact In In' G
-% 		  -> F == G.
+cofact_elim	: In == cofact_incl F @ In'.
 
-% %% Limit and colimit
+%% Unique
 
-% limit_elim	:     limit M Pr
-% 		   -> cone  M Pr'
-% 		   -> un_fact Pr Pr' F.
+un		: ens -> type.
+un_incl		: un U -> in U.
 
-% colimit_elim	:     colimit M In
-% 		   -> cocone  M In'
-% 		   -> un_cofact In In' F.
+un_l	 	: un_incl X == Y.
+un_r		= symm un_l.
+
+%% Limit and colimit
+
+limit		: cat_mor V (morph_ob M I) -> type.
+limit_incl	: limit Pr -> cone Pr.
+
+limit_elim	: limit Pr -> cone Pr' -> un (fact Pr Pr').
+
+colimit		: cat_mor (morph_ob M I) V -> type.
+colimit_incl	: colimit In -> cocone In.
+
+colimit_elim	: colimit In -> cone In' -> un (cofact In In').
