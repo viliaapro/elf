@@ -14,12 +14,12 @@ cocone_elim	: cocone In -> In == In @ morph_hom F.
 fact		: cat_mor V X -> cat_mor V' X -> ens.
 fact_incl	: in (fact Pr Pr') -> mor (dom Pr) (dom Pr').
 
-fact_elim	: Pr @ fact_incl F == Pr'.
+fact_elim	: {f : in (fact Pr Pr')} Pr @ fact_incl f == Pr'.
 
 cofact		: cat_mor X V -> cat_mor X V' -> ens.
 cofact_incl	: in (cofact In In') -> mor (cod In') (cod In).
 
-cofact_elim	: In == cofact_incl F @ In'.
+cofact_elim	: {f : in (cofact In In')} In == cofact_incl f @ In'.
 
 %% Unique
 
