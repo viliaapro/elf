@@ -64,7 +64,9 @@ distr		: functor_hom P G @ functor_hom P F == functor_hom P (G @ F).
 
 natural		: functor C C' -> functor C C' -> type.
 
-natural_compon	: natural F G -> cat_mor (functor_ob F X) (functor_ob G X).
+natural_compon	: natural Phi Psi
+		   -> cat_mor (functor_ob Phi X) (functor_ob Psi X).
 
-commut		: natural_compon N @ functor_hom P F
-		  == functor_hom P G @ natural_compon N.
+commut		: {n : natural Phi Psi}
+		   natural_compon n @ functor_hom Phi F
+		   == functor_hom Psi F @ natural_compon n.
