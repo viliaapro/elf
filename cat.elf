@@ -47,7 +47,7 @@ id_r		: F @ id == F.
 morph		: diag -> diag -> type. %name morph M.
 
 morph_ob	: morph D D' -> obj D -> obj D'.
-morph_hom	: mor X Y -> mor (morph_ob M X) (morph_ob M Y).
+morph_hom	: {m} mor X Y -> mor (morph_ob m X) (morph_ob m Y).
 
 %% Functor
 
@@ -55,10 +55,10 @@ functor		: cat -> cat -> type. %name functor F.
 functor_incl	: functor C C' -> morph (cat_incl C) (cat_incl C').
 
 functor_ob	= [F] morph_ob (functor_incl F).
-functor_hom	: cat_mor X Y -> cat_mor (functor_ob F X) (functor_ob F Y)
-		= morph_hom.
+functor_hom	: {f} cat_mor X Y -> cat_mor (functor_ob f X) (functor_ob f Y)
+		= [F] morph_hom (functor_incl F).
 
-distr		: functor_hom G @ functor_hom F == functor_hom (G @ F).
+distr		: functor_hom P G @ functor_hom P F == functor_hom P (G @ F).
 
 %% Natural transformation
 
@@ -66,5 +66,5 @@ natural		: functor C C' -> functor C C' -> type.
 
 natural_compon	: natural F G -> cat_mor (functor_ob F X) (functor_ob G X).
 
-commut		: natural_compon N @ functor_hom F
-		  == functor_hom G @ natural_compon N.
+commut		: natural_compon N @ functor_hom P F
+		  == functor_hom P G @ natural_compon N.

@@ -1,10 +1,10 @@
 %% Cone and cocone
 
-cone		: cat_mor V (morph_ob M I) -> type.
-cone_elim	: cone Pr -> morph_hom F @ Pr == Pr.
+cone		: {m} cat_mor V (morph_ob m I) -> type.
+cone_elim	: cone M Pr -> morph_hom M F @ Pr == Pr.
 
-cocone		: cat_mor (morph_ob M I) V -> type.
-cocone_elim	: cocone In -> In == In @ morph_hom F.
+cocone		: {m} cat_mor (morph_ob m I) V -> type.
+cocone_elim	: cocone M In -> In == In @ morph_hom M F.
 
 %% Factorization
 
@@ -31,12 +31,12 @@ un_r		= symm un_l.
 
 %% Limit and colimit
 
-limit		: cat_mor V (morph_ob M I) -> type.
-limit_incl	: limit Pr -> cone Pr.
+limit		: {m} cat_mor V (morph_ob m I) -> type.
+limit_incl	: limit M Pr -> cone M Pr.
 
-limit_elim	: limit Pr -> cone Pr' -> un (fact Pr Pr').
+limit_elim	: limit M Pr -> cone M Pr' -> un (fact Pr Pr').
 
-colimit		: cat_mor (morph_ob M I) V -> type.
-colimit_incl	: colimit In -> cocone In.
+colimit		: {m} cat_mor (morph_ob m I) V -> type.
+colimit_incl	: colimit M In -> cocone M In.
 
-colimit_elim	: colimit In -> cocone In' -> un (cofact In In').
+colimit_elim	: colimit M In -> cocone M In' -> un (cofact In In').
