@@ -1,0 +1,113 @@
+%% Universe
+
+ens		: type. %name ens X.
+in		: ens -> type. %name in A.
+incl		: in U -> ens.
+
+bin		= in U -> in U -> ens.
+
+%% Transitivity, symmetry, and reflexivity
+
+tr		: bin -> type. %name tr Tr.
+transit_intr	: ({x} {y} {z} in (R x y) -> in (R y z) -> in (R x z)) -> tr R.
+transit_elim	: tr R -> in (R X Y) -> in (R Y Z) -> in (R X Z).
+
+sy		: bin -> type. %name sy Sy.
+symm_intr	: ({x} {y} in (R x y) -> in (R y x)) -> sy R.
+symm_elim	: sy R -> in (R X Y) -> in (R Y X).
+
+re		: bin -> type. %name re Re.
+refl_intr	: ({x} in (R x x)) -> re R.
+refl_elim	: re R -> in (R X X).
+
+%% Equivalence
+
+eq		: bin -> type. %name eq Eq.
+equiv_intr	: tr R -> sy R -> re R -> eq R.
+equiv_elim_tr	: eq R -> tr R.
+equiv_elim_sy	: eq R -> sy R.
+equiv_elim_re	: eq R -> re R.
+
+%% Composition
+
+seq		: {r : in U -> in U -> ens}
+		   tr r -> in U -> in U -> ens.
+seq_intr	: {T : tr R} in (R X Y) -> in (seq R T X Y).
+seq_elim	: {T : tr R} in (seq R T X Y) -> in (R X Y).
+
+;		= [F : in (seq R T X Y)] [G : in (seq R T Y Z)]
+		   seq_intr T (transit_elim T
+				 (seq_elim T F)
+				 (seq_elim T G)).
+%infix right 4 ;.
+
+corr		= {x} {y} {x'} {y'}
+		   in (seq R T x y) -> in (seq R' T' x' y') -> ens.
+
+%% Distributivity
+
+di		: corr -> type. %name di Di. 
+
+distr_intr	: ({f} {g} {f'} {g'}
+		     in (C X Y X' Y' f f')
+		     -> in (C Y Z Y' Z' g g')
+		     -> in (C X Z X' Z' (f ; g) (f' ; g')))
+		   -> di C.
+
+distr_elim	: di C
+		   -> in (C X Y X' Y' F F')
+		   -> in (C Y Z Y' Z' G G')
+		   -> in (C X Z X' Z' (F ; G) (F' ; G')).
+
+%% Codistributivity
+
+co		: corr -> type. %name co Co. 
+
+codistr_intr	: ({f} {g} {f'} {g'}
+		     in (C X Y Y' X' f f')
+		     -> in (C Y Z Z' Y' g g')
+		     -> in (C X Z Z' X' (f ; g) (g' ; f')))
+		   -> co C.
+
+codistr_elim	: co C
+		   -> in (C X Y Y' X' F F')
+		   -> in (C Y Z Z' Y' G G')
+		   -> in (C X Z Z' X' (F ; G) (G' ; F')).
+
+%% Associativity
+
+as		: corr -> type. %name as As.
+
+assoc_intr	: ({f} {g} {h} {f'} {g'} {h'}
+		     in (C X Y X' Y' f f')
+		     -> in (C Y Z Y' Z' g g')
+		     -> in (C Z W Z' W' h h')
+		     -> in (C X W X' W' ((f ; g) ; h) (f' ; (g' ; h'))))
+		   -> as C.
+
+assoc_elim	: as C
+		   -> in (C X Y X' Y' F F')
+		   -> in (C Y Z Y' Z' G G')
+		   -> in (C Z W Z' W' H H')
+		     -> in (C X W X' W' ((F ; G) ; H) (F' ; (G' ; H'))).
+
+%% Equality
+
+diagon		: corr.
+
+diagon_eq	: eq (diagon X Y X Y).
+diagon_di	: di diagon.
+
+==		: in U -> in U -> type. %name == Eq.
+
+%infix none 5 ==.
+
+eq_intr		: in (diagon X Y X Y F G) -> F == G.
+eq_elim		: F == G -> in (diagon X Y X Y F G).
+
+%% Uniqueness
+
+un		: ens -> type. %name un Un.
+
+un_intr		: ({x : in U} {y : in U} x == y) -> un U.
+un_elim		: un U -> {x : in U} {y : in U} x == y.
