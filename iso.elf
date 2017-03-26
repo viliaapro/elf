@@ -1,0 +1,65 @@
+%% Arrow configurations
+
+%abbrev par	= [C : corr] [X] [Y] C X Y X Y.
+%abbrev diag	= [C] par C X Y.
+
+%% Identity, inverse, isomorphism
+
+id		: corr -> in U -> type. %name id Id.
+
+id_intr		: ({f} in (diag C (f ; I) f))
+		   -> ({f} in (diag C f (I ; f)))
+		   -> id C I.
+id_elim_0	: id C I -> in (diag C (F ; I) F).
+id_elim_1	: id C I -> in (diag C F (I ; F)).
+
+inv		: corr -> in U -> in V -> type. %name inv Inv.
+
+inv_intr	: id C (F ; G) -> inv C F G.
+inv_elim	: inv C F G -> id C (F ; G).
+
+iso		: corr -> in U -> type. %name iso Iso.
+
+iso_intr	: inv C F G -> inv C G' F -> iso C F.
+iso_elim_0	: iso C F -> inv C F G.
+iso_elim_1	: iso C F -> inv C G F.
+
+%% Uniqueness
+
+un		: bin -> ens -> type. %name un Un.
+
+un_intr		: ({x : in U} {y : in U} in (R x y)) -> un R U.
+un_elim		: un R U -> {x : in U} {y : in U} in (R x y).
+
+%% Lemmata
+
+%abbrev center
+   		: as C
+		   -> ({x} {y} re (par C x y))
+		   -> in (diag C ((F ; G) ; H) (F ; (G ; H)))
+		=  
+		   [As] [Re]
+		   assoc_elim As
+		   (refl_elim (Re X Y))
+		   (refl_elim (Re Y Z))
+		   (refl_elim (Re Z W)).
+
+% %abbrev left	= [Inv' : inv C G' F]
+% 		   id_elim_1 (inv_elim Inv').
+
+% %abbrev right	= [Inv : inv C F G]
+% 		   id_elim_0 (inv_elim Inv).
+
+%abbrev
+iso_eq		: as C
+		   -> tr (diag C)
+		   -> ({x} {y} re (par C x y))
+		   -> (inv C F G)
+		   -> (inv C G' F)
+		   -> in (diag C G G')
+		=
+		   [As] [Tr] [Re] [Inv] [Inv']
+		   seq_elim Tr
+		   (seq_intr Tr (id_elim_1 (inv_elim Inv'))
+		      ; seq_intr Tr (center As Re)
+		      ; seq_intr Tr (id_elim_0 (inv_elim Inv))).

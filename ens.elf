@@ -4,7 +4,7 @@ ens		: type. %name ens X.
 in		: ens -> type. %name in A.
 incl		: in U -> ens.
 
-bin		= in U -> in U -> ens.
+bin		= in U -> in V -> ens.
 
 %% Transitivity, symmetry, and reflexivity
 
@@ -39,7 +39,7 @@ seq_elim	: {T : tr R} in (seq R T X Y) -> in (R X Y).
 		   seq_intr T (transit_elim T
 				 (seq_elim T F)
 				 (seq_elim T G)).
-%infix right 4 ;.
+%infix left 10 ;.
 
 corr		= {x} {y} {x'} {y'}
 		   in (seq R T x y) -> in (seq R' T' x' y') -> ens.
@@ -90,24 +90,3 @@ assoc_elim	: as C
 		   -> in (C Y Z Y' Z' G G')
 		   -> in (C Z W Z' W' H H')
 		     -> in (C X W X' W' ((F ; G) ; H) (F' ; (G' ; H'))).
-
-%% Equality
-
-diagon		: corr.
-
-diagon_eq	: eq (diagon X Y X Y).
-diagon_di	: di diagon.
-
-==		: in U -> in U -> type. %name == Eq.
-
-%infix none 5 ==.
-
-eq_intr		: in (diagon X Y X Y F G) -> F == G.
-eq_elim		: F == G -> in (diagon X Y X Y F G).
-
-%% Uniqueness
-
-un		: ens -> type. %name un Un.
-
-un_intr		: ({x : in U} {y : in U} x == y) -> un U.
-un_elim		: un U -> {x : in U} {y : in U} x == y.
