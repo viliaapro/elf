@@ -59,17 +59,17 @@ distr_elim	: di C
 		   -> in (C Y Z Y' Z' G G')
 		   -> in (C X Z X' Z' (F ; G) (F' ; G')).
 
-%% Codistributivity
+%% Antidistributivity
 
-co		: corr -> type. %name co Co. 
+an		: corr -> type. %name an An. 
 
-codistr_intr	: ({f} {g} {f'} {g'}
+anti_intr	: ({f} {g} {f'} {g'}
 		     in (C X Y Y' X' f f')
 		     -> in (C Y Z Z' Y' g g')
 		     -> in (C X Z Z' X' (f ; g) (g' ; f')))
-		   -> co C.
+		   -> an C.
 
-codistr_elim	: co C
+anti_elim	: an C
 		   -> in (C X Y Y' X' F F')
 		   -> in (C Y Z Z' Y' G G')
 		   -> in (C X Z Z' X' (F ; G) (G' ; F')).
