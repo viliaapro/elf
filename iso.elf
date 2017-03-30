@@ -1,9 +1,9 @@
-%% Arrow configurations
+%% Diagonal
 
 %abbrev par	= [C : corr] [X] [Y] C X Y X Y.
 %abbrev diag	= [C] par C X Y.
 
-%% Identity, inverse, isomorphism
+%% Identity and inverse
 
 id		: corr -> in U -> type. %name id Id.
 
