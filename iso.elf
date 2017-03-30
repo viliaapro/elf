@@ -18,12 +18,6 @@ inv		: corr -> in U -> in V -> type. %name inv Inv.
 inv_intr	: id C (F ; G) -> inv C F G.
 inv_elim	: inv C F G -> id C (F ; G).
 
-iso		: corr -> in U -> type. %name iso Iso.
-
-iso_intr	: inv C F G -> inv C G' F -> iso C F.
-iso_elim_0	: iso C F -> inv C F G.
-iso_elim_1	: iso C F -> inv C G F.
-
 %% Uniqueness
 
 un		: bin -> ens -> type. %name un Un.
