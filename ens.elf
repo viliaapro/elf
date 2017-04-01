@@ -2,7 +2,6 @@
 
 ens		: type. %name ens X.
 in		: ens -> type. %name in A.
-incl		: in U -> ens.
 
 bin		= in U -> in V -> ens.
 

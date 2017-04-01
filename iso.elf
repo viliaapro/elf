@@ -27,8 +27,7 @@ un_elim		: un R U -> {x : in U} {y : in U} in (R x y).
 
 %% Lemmata
 
-%abbrev center
-   		: as C
+%abbrev center	: as C
 		   -> ({x} {y} re (par C x y))
 		   -> in (diag C ((F ; G) ; H) (F ; (G ; H)))
 		=  
@@ -38,14 +37,15 @@ un_elim		: un R U -> {x : in U} {y : in U} in (R x y).
 		   (refl_elim (Re Y Z))
 		   (refl_elim (Re Z W)).
 
-%abbrev left	= [Inv' : inv C G' F]
+left		: {g} inv C G' F -> in (diag C g _)
+   		= [G] [Inv']
 		   id_elim_1 (inv_elim Inv').
 
-%abbrev right	= [Inv : inv C F G]
+right		: {g'} inv C F G -> in (diag C _ g')
+   		= [G'] [Inv]
 		   id_elim_0 (inv_elim Inv).
 
-%abbrev
-iso_eq		: as C
+%abbrev iso_eq	: as C
 		   -> tr (diag C)
 		   -> ({x} {y} re (par C x y))
 		   -> (inv C F G)
@@ -54,6 +54,6 @@ iso_eq		: as C
 		=
 		   [As] [Tr] [Re] [Inv] [Inv']
 		   seq_elim Tr
-		   (seq_intr Tr (id_elim_1 (inv_elim Inv'))
+		   (seq_intr Tr (left G Inv')
 		      ; seq_intr Tr (center As Re)
-		      ; seq_intr Tr (id_elim_0 (inv_elim Inv))).
+		      ; seq_intr Tr (right G' Inv)).
