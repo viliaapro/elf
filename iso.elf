@@ -39,7 +39,7 @@ center		: as C
 		   [As] [Re]
 		   ([Fun : {x} {y} {f} in (par C x y f f)]
 		      assoc_elim As (Fun X Y F) (Fun Y Z G) (Fun Z W H))
-		   ([_] [_] [_]
+		   ([X] [Y] [F]
 		      (refl_elim (corr_re_elim Re))).
 
 left		: {g} inv C G' F -> in (diag C g _)
