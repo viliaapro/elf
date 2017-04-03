@@ -1,0 +1,65 @@
+%% Negative diagonal
+
+%abbrev par'	= [C : corr] [X] [Y] C X Y Y X.
+%abbrev diag'	= [C] par' C X Y.
+
+%% Negation
+
+neg		: corr -> corr -> type. %name neg Neg.
+
+neg_intr	: ({f} {g} inv P f g -> in (diag' N f g)) -> neg P N.
+neg_elim	: neg P N -> inv P F G -> in (diag' N F G).
+
+%% Boolean product
+
+times_0		: corr -> corr -> type. %name times_0 T0_.
+
+times_0_intr	: ({f} {g} {f'} {g'}
+		     in (diag P f f')
+		     -> in (diag P g g')
+		     -> in (diag P (f ; g) (f' ; g')))
+		   -> times_0 P N.
+
+times_0_elim	: times_0 P N
+		   -> in (diag P F F')
+		   -> in (diag P G G')
+		   -> in (diag P (F ; G) (F' ; G')).
+
+times_1		: corr -> corr -> type. %name times_1 T1_.
+
+times_1_intr	: ({f} {g} {f'} {g'}
+		     in (diag P f f')
+		     -> in (diag N g g')
+		     -> in (diag N (f ; g) (f' ; g')))
+		   -> times_1 P N.
+
+times_1_elim	: times_1 P N
+		   -> in (diag P F F')
+		   -> in (diag N G G')
+		   -> in (diag N (F ; G) (F' ; G')).
+
+times_2		: corr -> corr -> type. %name times_2 T2_.
+
+times_2_intr	: ({f} {g} {f'} {g'}
+		     in (diag N f f')
+		     -> in (diag P g g')
+		     -> in (diag N (f ; g) (f' ; g')))
+		   -> times_2 P N.
+
+times_2_elim	: times_2 P N
+		   -> in (diag N F F')
+		   -> in (diag P G G')
+		   -> in (diag N (F ; G) (F' ; G')).
+
+times_3		: corr -> corr -> type. %name times_3 T3_.
+
+times_3_intr	: ({f} {g} {f'} {g'}
+		     in (diag N f f')
+		     -> in (diag N g g')
+		     -> in (diag P (f ; g) (f' ; g')))
+		   -> times_3 P N.
+
+times_3_elim	: times_3 P N
+		   -> in (diag N F F')
+		   -> in (diag N G G')
+		   -> in (diag P (F ; G) (F' ; G')).
