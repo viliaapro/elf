@@ -88,4 +88,4 @@ assoc_elim	: as C
 		   -> in (C X Y X' Y' F F')
 		   -> in (C Y Z Y' Z' G G')
 		   -> in (C Z W Z' W' H H')
-		     -> in (C X W X' W' ((F ; G) ; H) (F' ; (G' ; H'))).
+		   -> in (C X W X' W' ((F ; G) ; H) (F' ; (G' ; H'))).
