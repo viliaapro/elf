@@ -12,7 +12,7 @@ neg_elim	: neg P N -> inv P F G -> in (diag' N F G).
 
 %% Sign
 
-sign		: corr -> corr -> corr -> type. %name sign S.
+sign		: corr -> corr -> corr -> type. %name sign Sgn.
 
 sign_intr	: ({f} {g} {f'} {g'}
 		     in (diag A f f')
@@ -27,7 +27,7 @@ sign_elim	: sign A B C
 
 %% Polarity
 
-pol		: corr -> corr -> type.
+pol		: corr -> corr -> type. %name pol Pol.
 
 pol_intr	: sign P P P
 		   -> sign P N N
