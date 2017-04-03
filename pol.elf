@@ -10,7 +10,7 @@ neg		: corr -> corr -> type. %name neg Neg.
 neg_intr	: ({f} {g} inv P f g -> in (diag' N f g)) -> neg P N.
 neg_elim	: neg P N -> inv P F G -> in (diag' N F G).
 
-%% Boolean product
+%% Sign of product
 
 times_0		: corr -> corr -> type. %name times_0 T0_.
 
