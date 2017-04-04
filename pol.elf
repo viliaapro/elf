@@ -7,8 +7,9 @@
 
 neg		: corr -> corr -> type. %name neg Neg.
 
-neg_intr	: ({f} {g} inv P f g -> in (diag' N f g)) -> neg P N.
-neg_elim	: neg P N -> inv P F G -> in (diag' N F G).
+neg_intr	: ({f} {g} inv P f g -> inv P g f -> in (diag' N f g))
+		   -> neg P N.
+neg_elim	: neg P N -> inv P F G -> inv P G F -> in (diag' N F G).
 
 %% Sign
 
