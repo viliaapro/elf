@@ -19,14 +19,6 @@ re		: bin -> type. %name re Re.
 refl_intr	: ({x} in (R x x)) -> re R.
 refl_elim	: re R -> in (R X X).
 
-%% Equivalence
-
-eq		: bin -> type. %name eq Eq.
-equiv_intr	: tr R -> sy R -> re R -> eq R.
-equiv_elim_tr	: eq R -> tr R.
-equiv_elim_sy	: eq R -> sy R.
-equiv_elim_re	: eq R -> re R.
-
 %% Composition
 
 seq		: {r : in U -> in U -> ens}
