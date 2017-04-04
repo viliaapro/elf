@@ -3,13 +3,24 @@
 %abbrev par'	= [C : corr] [X] [Y] C X Y Y X.
 %abbrev diag'	= [C] par' C X Y.
 
-%% Negation
+%% Negation and conegation
 
 neg		: corr -> corr -> type. %name neg Neg.
 
 neg_intr	: ({f} {g} inv P f g -> inv P g f -> in (diag' N f g))
 		   -> neg P N.
+
 neg_elim	: neg P N -> inv P F G -> inv P G F -> in (diag' N F G).
+
+coneg		: corr -> corr -> type. %name coneg Con.
+
+coneg_intr	: ({f} {g} in (diag' N f g) -> inv P f g)
+		   -> ({f} {g} in (diag' N f g) -> inv P g f) 
+		   -> coneg P N.
+
+coneg_elim_0	: coneg P N -> in (diag' N F G) -> inv P F G.
+coneg_elim_1	: coneg P N -> in (diag' N F G) -> inv P G F.
+
 
 %% Sign
 
