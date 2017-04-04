@@ -18,13 +18,6 @@ inv		: corr -> in U -> in V -> type. %name inv Inv.
 inv_intr	: id C (F ; G) -> inv C F G.
 inv_elim	: inv C F G -> id C (F ; G).
 
-%% Uniqueness
-
-un		: bin -> ens -> type. %name un Un.
-
-un_intr		: ({x : in U} {y : in U} in (R x y)) -> un R U.
-un_elim		: un R U -> {x : in U} {y : in U} in (R x y).
-
 %% Lemmata
 
 corr_re		: corr -> type. %name corr_re CRe.
