@@ -5,12 +5,20 @@
 
 %% Negation
 
-neg		: corr -> corr -> type. %name neg Neg.
+neg		: corr -> corr -> corr -> type. %name neg Neg.
 
-neg_intr	: ({f} {g} inv P f g -> inv P g f -> in (diag' N f g))
-		   -> neg P N.
+neg_intr	: ({f} {g} {h}
+		     in (diag P f g)
+		     -> inv Eq g h
+		     -> inv Eq h g
+		     -> in (diag' N f h))
+		   -> neg Eq P N.
 
-neg_elim	: neg P N -> inv P F G -> inv P G F -> in (diag' N F G).
+neg_elim	: neg Eq P N
+		   -> in (diag P F G)
+		   -> inv Eq G H
+		   -> inv Eq H G
+		   -> in (diag' N F H).
 
 %% Sign
 
