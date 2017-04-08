@@ -59,16 +59,3 @@ pol_elim_0	: pol P N -> sign P P P.
 pol_elim_1	: pol P N -> sign P N N.
 pol_elim_2	: pol P N -> sign N P N.
 pol_elim_3	: pol P N -> sign N N P.
-
-pol'		: corr -> corr -> type. %name pol' Pol'.
-
-pol'_intr	: sign P P N
-		   -> sign P N P
-		   -> sign N P P
-		   -> sign N N N
-		   -> pol' P N.
-
-pol'_elim_0	: pol' P N -> sign P P N.
-pol'_elim_1	: pol' P N -> sign P N P.
-pol'_elim_2	: pol' P N -> sign N P P.
-pol'_elim_3	: pol' P N -> sign N N N.
